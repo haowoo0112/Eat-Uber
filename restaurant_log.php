@@ -52,7 +52,8 @@ if(isset($_POST['Registration'])) {
     } 
 
     $sql = "INSERT INTO restaurants (name , description, logo, address, phone_number, email , password) VALUES ('$name', '$description', '$imagePath', '$address', '$phone_number', '$email', '$password')"; //TODO
-        
+    $conn->query($sql);
+    header('Location: restaurant_log.php');
     // if($conn->query($sql) === True)
     //     echo 'Success';
     // else
@@ -67,6 +68,7 @@ if(isset($_POST['update'])) {
 
     $sql = "UPDATE restaurants SET password='$new_password' WHERE email= '$email'";
     $conn->query($sql);
+    header('Location: restaurant_log.php');
 }
 
 $conn->close();

@@ -223,7 +223,7 @@ Bootstrap 5 Dashboard Admin Template
                                             
                                             <input class="form-control" type="text" name="update-name" id="update-name" placeholder="Food Name">
 
-                                            <input class="form-control" type="text" name="update-description" id="update-name" placeholder="Description">
+                                            <input class="form-control" type="text" name="update-description" id="update-description" placeholder="Description">
 
                                             <input class="form-control" type="text" name="update-price" id="update-price" placeholder="Price">
 

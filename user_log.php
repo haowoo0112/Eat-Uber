@@ -18,10 +18,10 @@ if(isset($_POST['log_in'])) {
     $sql = "SELECT email, password, user_id FROM user WHERE email= '$email' and password= '$password'";
     $result = $conn->query($sql);
     if ($result->num_rows == 0){
-        echo "user not exist";
+        // echo "user not exist";
     }
     else{
-        echo "user exist";
+        // echo "user exist";
         session_start();        
         $row = $result->fetch_assoc();
         $_SESSION['user_id'] = $row["user_id"]; 
@@ -51,13 +51,14 @@ if(isset($_POST['Registration'])) {
     //     echo 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
     // }else{
     $sql = "INSERT INTO user (First_Name, Last_Name, email, password, phone_number,delivery_address) VALUES ('$First_Name', '$Last_Name', '$email', '$password', '$phone_number', '$delivery_address')"; //TODO
-    
-    if($conn->query($sql) === True)
-        echo 'Success';
-    else
-        echo 'email has exist';
+    $conn->query($sql);
+    // if($conn->query($sql) === True)
+    //     echo 'Success';
+    // else
+    //     echo 'email has exist';
     // }        
     // TODO: header
+    header('Location: user_log.php');
 }
 
 // receive update post
@@ -68,6 +69,7 @@ if(isset($_POST['update'])) {
 
     $sql = "UPDATE user SET password='$new_password' WHERE email= '$email'";
     $conn->query($sql);
+    header('Location: user_log.php');
 }
 
 $conn->close();

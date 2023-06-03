@@ -56,6 +56,11 @@ while($row = $result->fetch_assoc()) {
 
 }
 
+if (isset($_POST['clear_session'])) {
+    unset($_SESSION['user_id']);
+    header('Location: welcome.php');
+}
+
 $conn->close();
 ?>
 
@@ -141,10 +146,14 @@ Bootstrap 5 Dashboard Admin Template
                             </li>
 
                             <li class="nav-item border-top mt-auto pt-2">
-                                <a class="nav-link" href="#">
-                                    <i class="bi-box-arrow-left me-2"></i>
-                                    Logout
-                                </a>
+                                <form method="post">
+                                    <?php if (isset($_SESSION['user_id'])): ?>
+                                        <button type="submit" class="nav-link" style="border: none; background: none; cursor: pointer;" name="clear_session">
+                                            <i class="bi-box-arrow-left me-2"></i>
+                                            Logout
+                                        </button>
+                                    <?php endif; ?>
+                                </form>
                             </li>
                         </ul>
                     </div>
@@ -205,6 +214,7 @@ Bootstrap 5 Dashboard Admin Template
 
                             <div class="custom-block custom-block-transations">
                                 <h5 class="mb-4">Recent Transations</h5>
+                                <?php if(isset($data)): ?>
                                 <?php foreach ($data as $row): ?>
                                     <div class="d-flex flex-wrap align-items-center mb-4">
                                         <div class="d-flex align-items-center">
@@ -244,7 +254,7 @@ Bootstrap 5 Dashboard Admin Template
                                         </div>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
-
+                                <?php endif; ?>
                             </div>
 
                             <div class="custom-block custom-block-profile bg-white">
